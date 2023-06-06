@@ -13,19 +13,19 @@ const AuthProvider = ({children}) => {
 
     const auth = getAuth(app)
 
-    const signUp =(email, password)=>{
+    const handlesignUp =(email, password)=>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const logIn = (email, password)=>{
+    const handlelogIn = (email, password)=>{
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const handleUpdateProfile=(photo, name)=>{
+    const handleUpdateProfile=(user,name, photo)=>{
 
-         updateProfile(auth.currentUser, {
+        return updateProfile( user, {
            
             displayName:name, photoURL:photo
         })
@@ -47,10 +47,10 @@ const AuthProvider = ({children}) => {
     },[])
    
     const authInfo ={
-        signUp,
+        handlesignUp,
         loading,
         user,
-        logIn,
+        handlelogIn,
         handleUpdateProfile
     }
     return (

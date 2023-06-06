@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const[error, setError]=useState("")
 
-  const{SignUp, handleUpdateProfile}=useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const{handlesignUp, handleUpdateProfile}=useContext(AuthContext)
 
   const onSubmit = data =>{
 
@@ -19,15 +22,19 @@ const SignUp = () => {
     }
     console.log(data);
     
-    SignUp(data.email, data.password)
+    handlesignUp(data.email, data.password)
     .then(result =>{
       const signUpUser = result.user;
+      handleUpdateProfile(signUpUser,data.name, data.photoUrl)
+
+      navigate('/')
+      console.log(signUpUser);
     })
     .catch(error =>{
       console.log(error);
     })
 
-    handleUpdateProfile(data.name, data.photoUrl)
+  
 
   } 
 
