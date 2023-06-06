@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.apiKey,
-  authDomain: import.meta.env.authDomain,
-  projectId: import.meta.env.projectId,
-  storageBucket: import.meta.env.storageBucket,
-  messagingSenderId: import.meta.env.messagingSenderId,
-  appId: import.meta.env.appId
+    apiKey: "AIzaSyAcTz4Ice-nO3bQcePwXo4BEFN6pkOn6sM",
+    authDomain: "music-camp-86339.firebaseapp.com",
+    projectId: "music-camp-86339",
+    storageBucket: "music-camp-86339.appspot.com",
+    messagingSenderId: "107571423517",
+    appId: "1:107571423517:web:52ef865b5e00882c4e19f4"
 };
 
 // Initialize Firebase

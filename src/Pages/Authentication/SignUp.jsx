@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../Routes/AuthProvider';
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const[error, setError]=useState("")
+
+  const{SignUp, handleUpdateProfile}=useContext(AuthContext)
 
   const onSubmit = data =>{
 
@@ -14,7 +17,17 @@ const SignUp = () => {
     else{
       setError("")
     }
-   
+    console.log(data);
+    
+    SignUp(data.email, data.password)
+    .then(result =>{
+      const signUpUser = result.user;
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+
+    handleUpdateProfile(data.name, data.photoUrl)
 
   } 
 
