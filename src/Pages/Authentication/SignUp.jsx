@@ -3,7 +3,8 @@ import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import Swal from 'sweetalert2'
+
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -44,6 +45,13 @@ const SignUp = () => {
         .then(data => {
           if(data.insertedId){
             console.log(data);
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Sign Up successfully',
+              showConfirmButton: false,
+              timer: 1500
+            })
           }
          
         })
@@ -51,6 +59,12 @@ const SignUp = () => {
     })
     .catch(error =>{
       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${error.message}`,
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
     })
 
   

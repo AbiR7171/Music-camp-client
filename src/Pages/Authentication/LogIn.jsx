@@ -3,6 +3,8 @@ import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const LogIn = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -19,10 +21,23 @@ const LogIn = () => {
     handlelogIn(data.email, data.password)
     .then(result =>{
         console.log(result.user);
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Login successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
         navigate("/")
     })
     .catch(error =>{
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${error.message}`,
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
     })
     
 
