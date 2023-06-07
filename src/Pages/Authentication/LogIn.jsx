@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -10,7 +10,7 @@ const LogIn = () => {
 
   const navigate = useNavigate()
 
-  const{handlelogIn, handleUpdateProfile}=useContext(AuthContext)
+  const{handlelogIn}=useContext(AuthContext)
 
   const onSubmit = data =>{
 
@@ -79,6 +79,7 @@ const LogIn = () => {
                 >
                   Submit
                 </button>
+                <p className='mt-2 font-serif'>New At Music-camp ?<Link className='btn-link' to="/signup">signUp</Link></p>
               </div>
             </form>
           </div>

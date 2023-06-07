@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import pic from "../../assets/Mobile-login-Cristina.jpg"
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -29,6 +30,24 @@ const SignUp = () => {
 
       navigate('/')
       console.log(signUpUser);
+
+   const user = {name: data.name, email: data.email, photo:data.photoUrl}
+
+        fetch("http://localhost:5000/users",{
+          method:"POST",
+          headers:{
+            "content-type": "application/json"
+          },
+          body:JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(data.insertedId){
+            console.log(data);
+          }
+         
+        })
+
     })
     .catch(error =>{
       console.log(error);
@@ -139,6 +158,7 @@ const SignUp = () => {
                 >
                   Submit
                 </button>
+                <p className='mt-2 font-serif'>Already have an account ?<Link className='btn-link' to="/login">Login</Link></p>
               </div>
             </form>
           </div>
