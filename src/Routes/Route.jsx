@@ -10,6 +10,7 @@ import SelectedClass from "../Pages/Dashboard/Student/SelectedClass";
 import EnrolledClass from "../Pages/Dashboard/Student/EnrolledClass";
 import AddAClass from "../Pages/Dashboard/Instructor/AddAClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses";
+import UpdateClass from "../Pages/Dashboard/Instructor/UpdateClass";
 
 
 const route = createBrowserRouter([
@@ -50,6 +51,10 @@ const route = createBrowserRouter([
             {
                 path:"/dashboard/instructor/myClasses",
                 element:<MyClasses/>
+            },
+            {
+                path:"/dashboard/instructor/updateClass/:id",
+                element:<UpdateClass/>
             }
           ]
     },

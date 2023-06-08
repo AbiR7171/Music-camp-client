@@ -1,50 +1,68 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Routes/AuthProvider';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const AddAClass = () => {
-    const {user}=useContext(AuthContext);
-   
-    const hadleSubmit = event =>{
 
+const UpdateClass = () => {
+ 
+
+    const {user}=useContext(AuthContext)
+
+    const[oldData, setOldData]=useState([])
+    
+   
+
+    useEffect(()=>{
+      fetch(`http://localhost:5000/myClasses/${data.id}`)
+      .then(res => res.json())
+      .then(data => {
+        setOldData(data);
+      })
+    },[])
+
+
+    const handleUpdate = event =>{
+
+      
 
         event.preventDefault()
         const from = event.target;
 
         const className = from.className.value;
-        const name = from.name.value;
-        const email = from.email.value;
         const seats = from.seats.value;
         const  price = from.price.value;
         const image = from.image.value;
 
-       const classes ={className,  name, email, seats, price, image, status:"pending", totalEnrolled:0}
+    
+       const updateData = {className,  seats, price, image}
 
-       fetch("http://localhost:5000/classes", {
-        method:"POST",
-         headers:{
-            "content-type": "application/json"
-         },
-         body:JSON.stringify(classes)
+       fetch(`http://localhost:5000/classes/${data.id}`, {
+        method:"PUT",
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify(updateData)
        })
        .then(res => res.json())
-       .then(data =>{
+       .then(data => {
         console.log(data);
-        if(data.insertedId){
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'class added',
-                showConfirmButton: false,
-                timer: 1500
-              })
+        if(data.modifiedCount >0){
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'class update',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
        })
-        
     }
+
+
     return (
         <div>
-                <form onSubmit={hadleSubmit} className="w-[600px] mx-auto">
+             <form onSubmit={handleUpdate}  className="w-[600px] mx-auto">
       <div className="mb-4">
         <label className="block text-gray-700">Class Name</label>
         <input
@@ -106,11 +124,11 @@ const AddAClass = () => {
         type="submit"
         className="px-1 py-3 w-full bg-green-800 text-white rounded-md hover:bg-green-600"
       >
-        Add
+        update
       </button>
     </form>
         </div>
     );
 };
 
-export default AddAClass;
+export default UpdateClass;
