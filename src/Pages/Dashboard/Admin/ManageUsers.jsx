@@ -51,6 +51,31 @@ const ManageUsers = () => {
         
     }
 
+    const handleUserDeleter =user=>{
+
+
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method:"DELETE"
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.deletedCount > 0){
+                refetch()
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: `${user.name} deleted`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+            }
+        })
+        
+
+    }
+
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -60,6 +85,7 @@ const ManageUsers = () => {
       <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Image</th>
         <th>Email</th>
         <th>Role</th>
         <th className='text-center'>Manage Role</th>
@@ -70,6 +96,9 @@ const ManageUsers = () => {
       {users.map((user, index)=>  <tr>
         <td>{index + 1}</td>
         <td>{user.name}</td>
+        <td>
+            <img src={user.photo} className='w-12 rounded-xl hover:w-52 duration-150' />
+        </td>
         <td>{user.email}</td>
         <td>{user.role}</td>
         <td>
@@ -79,7 +108,7 @@ const ManageUsers = () => {
          </div>
         </td>
         <td>
-        <button className="btn btn-circle btn-outline">
+        <button onClick={()=> handleUserDeleter(user)} className="btn btn-circle btn-outline">
            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
          </button>
         </td>
