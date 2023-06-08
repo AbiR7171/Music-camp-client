@@ -10,14 +10,16 @@ const UpdateClass = () => {
     const {user}=useContext(AuthContext)
 
     const[oldData, setOldData]=useState([])
+    console.log(oldData);
     
+    const data = useParams()
    
 
     useEffect(()=>{
       fetch(`http://localhost:5000/myClasses/${data.id}`)
       .then(res => res.json())
       .then(data => {
-        setOldData(data);
+        const datas = data.map(d => setOldData(d))
       })
     },[])
 
@@ -66,6 +68,7 @@ const UpdateClass = () => {
       <div className="mb-4">
         <label className="block text-gray-700">Class Name</label>
         <input
+        defaultValue={oldData.className}
         name='className'
           type="text"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none bg-green-500 bg-opacity-20"
@@ -96,6 +99,7 @@ const UpdateClass = () => {
       <div className="mb-4">
         <label className="block text-gray-700">Available Seats</label>
         <input
+        defaultValue={oldData.seats}
           name='seats'
           type="number"
           className="w-full px-3 py-2 border border-gray-300 bg-green-500 bg-opacity-20 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
@@ -105,6 +109,7 @@ const UpdateClass = () => {
       <div className="mb-4">
         <label className="block text-gray-700">Price</label>
         <input
+        defaultValue={oldData.price}
         name='price'
           type="text"
           className="w-full px-3 py-2 border border-gray-300  bg-green-500 bg-opacity-20 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
@@ -114,6 +119,7 @@ const UpdateClass = () => {
         <label htmlFor="">Class Image</label>
         {/* <input name='image' type="file" className="file-input block mt-1 mb-3 file-input-bordered file-input-success w-full max-w-xs" /> */}
          <input
+         defaultValue={oldData.image}
          name='image'
           type="text"
           className="w-full px-3 py-2 mb-2 bg-green-500 bg-opacity-20 border border-gray-300 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"

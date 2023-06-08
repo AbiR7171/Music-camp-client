@@ -10,9 +10,9 @@ import { BiSelectMultiple, BiBookAdd } from "react-icons/bi";
 const Dashboard = () => {
      const[users]=useUsers()
      
-     const admin = false;
+     const admin = true;
      const student = false;
-     const instructor = true;
+     const instructor = false;
 
     const dashboardItem = <>
     
