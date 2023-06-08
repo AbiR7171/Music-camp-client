@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
 import app from '../Firebase/firebase.confiq';
+import useAxiosSecure from '../Pages/Hooks/useAxiosSecure';
+import axios from 'axios';
 
 
 
@@ -9,6 +11,7 @@ const AuthProvider = ({children}) => {
      
     const [user, setUser]=useState(null)
     const[loading, setLoading]=useState(true)
+    
 
 
     const auth = getAuth(app)
@@ -54,6 +57,20 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
                 setUser(currentUser)
                 setLoading(false)
+                if(currentUser){
+                    axios.post("http://localhost:5000/jwt", {
+                        email: currentUser.email
+                    })
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("Music-access-token", data.data.token)
+                    })
+                }
+                else{
+                    localStorage.removeItem("Music-access-token")
+                }
+                
+
         })
         return ()=> unsubscribe()
     },[])

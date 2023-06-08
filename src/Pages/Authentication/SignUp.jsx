@@ -32,7 +32,7 @@ const SignUp = () => {
       navigate('/')
       console.log(signUpUser);
 
-   const user = {name: data.name, email: data.email, photo:data.photoUrl}
+   const user = {name: data.name, email: data.email, photo:data.photoUrl, role: "student"}
 
         fetch("http://localhost:5000/users",{
           method:"POST",
