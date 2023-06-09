@@ -11,6 +11,8 @@ import EnrolledClass from "../Pages/Dashboard/Student/EnrolledClass";
 import AddAClass from "../Pages/Dashboard/Instructor/AddAClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses";
 import UpdateClass from "../Pages/Dashboard/Instructor/UpdateClass";
+import AllClasses from "../Pages/Home/AllClasses";
+import AllInstructor from "../Pages/Home/AllInstructor";
 
 
 const route = createBrowserRouter([
@@ -22,6 +24,14 @@ const route = createBrowserRouter([
                 path:"/",
                 element: <Home/>
             },
+            {
+                path:"/classes",
+                element:<AllClasses/>
+            },
+            {
+                path:"/instructor",
+                element: <AllInstructor/>
+            }
         ]
     },
     {

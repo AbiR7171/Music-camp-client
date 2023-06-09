@@ -10,7 +10,7 @@ const useManageClasses = () => {
    
 
     const {data:classes=[], refetch}=useQuery({
-        queryKey:["manageClass"],
+        queryKey:["classes"],
         enabled:!loading,
         queryFn:async()=> {
           const res = await   axiosSecure("/classes")

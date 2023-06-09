@@ -88,7 +88,7 @@ const ManageClassRow = ({cla, index, refetch}) => {
         <td className='text-end'>{cla.status}</td>
         <td>
           <div className='flex space-x-2'>
-          <button disabled={cla.status === "approve" || "deny"} onClick={handleAprove} className="btn btn-xs bg-orange-400">Approve</button>
+          <button disabled={cla.status === "approve" || cla.status === "deny"} onClick={handleAprove} className="btn btn-xs bg-orange-400">Approve</button>
           <button  onClick={handleDeny} disabled={cla.status === "approve" || cla.status === "deny"} className="btn btn-xs bg-orange-400">Deny</button>
           {/* Open the modal using ID.showModal() method */}
 {/* Open the modal using ID.showModal() method */}

@@ -15,10 +15,14 @@ const AddAClass = () => {
         const name = from.name.value;
         const email = from.email.value;
         const seats = from.seats.value;
-        const  price = from.price.value;
+        const seat = parseFloat(seats)
+       
+        const prices = from.price.value;
+        const price = parseFloat(prices)
         const image = from.image.value;
 
-       const classes ={className,  name, email, seats, price, image, status:"pending", totalEnrolled:0}
+       const classes ={className,  name, email, seat, price, image, status:"pending", totalEnrolled:0}
+       console.log(className, name, email, seats, price);
 
        fetch("http://localhost:5000/classes", {
         method:"POST",
@@ -31,6 +35,7 @@ const AddAClass = () => {
        .then(data =>{
         console.log(data);
         if(data.insertedId){
+          from.reset()
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',

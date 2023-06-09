@@ -12,7 +12,8 @@ const NavBar = () => {
     const navItem = <>
 
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/">Instructors</Link></li>
+    <li><Link to="/instructor">Instructors</Link></li>
+    <li><Link to="/classes">Classes</Link></li>
     <li><Link to="/dashboard">DashBoard</Link></li>
    {user ?  <li onClick={handleLogOut} ><Link to="/">Logout</Link></li> :  <li ><Link to="/signup">Login</Link></li>}
     
@@ -20,7 +21,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="navbar bg-black bg-opacity-30 text-white fixed z-10 container mx-auto">
+            <div className="navbar bg-black bg-opacity-30 text-white  z-20  container mx-auto font-serif">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -30,7 +31,7 @@ const NavBar = () => {
        {navItem}
       </ul>
     </div>
-    <a className="btn btn-ghost uppercase text-xl ">Sports-camp</a>
+    <a className="btn btn-ghost uppercase text-xl ">-Music-camp-</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 uppercase ">
