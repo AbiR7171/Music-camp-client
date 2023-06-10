@@ -10,7 +10,7 @@ const SelectedClass = () => {
     return (
         <div>
             <div className='flex justify-end'>
-            <button className='text-2xl bg-ora flex items-center gap-2'><BsFillSendCheckFill/></button>
+            
             </div>
             <div className="overflow-x-auto">
   <table className="table table-zebra w-[900px]">
@@ -23,6 +23,7 @@ const SelectedClass = () => {
         <th>Instructor</th>
         <th>Price</th>
         <th>Delete</th>
+        <th>Pay</th>
       </tr>
     </thead>
     <tbody>

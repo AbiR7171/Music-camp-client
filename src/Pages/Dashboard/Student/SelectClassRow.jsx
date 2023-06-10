@@ -1,6 +1,8 @@
 import React from 'react';
 import { AiFillDelete } from "react-icons/ai";
 import Swal from 'sweetalert2';
+import { BsFillSendCheckFill } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 
 const SelectClassRow = ({clas, index,refetch}) => {
@@ -35,6 +37,11 @@ const SelectClassRow = ({clas, index,refetch}) => {
         <td>{price}</td>
         <td className='text-3xl text-red-700'>
         <AiFillDelete onClick={()=>handleDetete(_id)}/>
+        </td>
+        <td className='text-3xl'>
+        <Link to={`/dashboard/student/payment/${_id}`}>
+        <button className='text-2xl bg-ora flex items-center gap-2'><BsFillSendCheckFill/></button>
+        </Link>
         </td>
       </tr>
     );

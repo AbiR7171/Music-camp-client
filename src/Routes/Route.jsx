@@ -13,6 +13,7 @@ import MyClasses from "../Pages/Dashboard/Instructor/MyClasses";
 import UpdateClass from "../Pages/Dashboard/Instructor/UpdateClass";
 import AllClasses from "../Pages/Home/AllClasses";
 import AllInstructor from "../Pages/Home/AllInstructor";
+import Payment from "../Pages/Dashboard/Student/Payment";
 
 
 const route = createBrowserRouter([
@@ -53,6 +54,10 @@ const route = createBrowserRouter([
             {
                 path:"/dashboard/student/enrolledClass",
                 element:<EnrolledClass/>
+            },
+            {
+                path:"/dashboard/student/payment/:id",
+                element:<Payment/>
             },
             {
                 path:"/dashboard/instructor/addAClass",
