@@ -7,12 +7,13 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Routes/AuthProvider';
 
-const CheckOut = ({book, clas}) => {
+const CheckOut = ({book}) => {
 
 
  
 
     const {price}= book;
+    console.log(book);
 
     const stripe = useStripe()
     const element = useElements()
@@ -90,8 +91,8 @@ else{
               }
             })
         
-          axiosSecure.patch(`/classEnroll/${book.classId}`,{
-            seat: clas.seat, totalEnrolled: clas.totalEnrolled
+          axiosSecure.put(`/classEnroll/${book.classId}`,{
+            seat: book.seat, totalEnrolled: book.enrolled
           })
           .then(res =>{
             console.log(res.data);

@@ -6,7 +6,7 @@ const AllClassesCard = ({clas}) => {
 
     const {user}= useContext(AuthContext)
 
-    const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user.displayName, email: user.email, status:"selected"}
+    const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user.displayName, email: user.email, status:"selected", seat: clas.seat, enrolled: clas.totalEnrolled}
     
     const disable = clas.seats == 0 ;
 

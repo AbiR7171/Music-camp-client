@@ -13,7 +13,6 @@ const Payment = () => {
     const id = useParams()
 
     const[book, setbook]=useState({})
-    const[clas, setClass]=useState({})
     console.log(book);
 
 
@@ -32,23 +31,13 @@ const Payment = () => {
         
     },[])
 
-    useEffect(()=>{
-        fetch(`http://localhost:5000/classes/${book.classId}`)
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            data.map(c => {
-                console.log(c);
-                setClass(d)
-            })
-        })
-    },[])
+ 
 
   
     return (
         <div className='w-[900px]'>
             <Elements stripe={stripePromise}>
-                <CheckOut book={book} clas={clas}/>
+                <CheckOut book={book}/>
             </Elements>
         </div>
     );
