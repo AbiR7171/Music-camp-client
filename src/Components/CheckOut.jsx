@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Routes/AuthProvider';
 
-const CheckOut = ({book}) => {
+const CheckOut = ({book, clas}) => {
 
 
  
@@ -71,15 +71,31 @@ if(error || confirmError){
   Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: `${error.message}`
+      text: `${error?.message}`
     })
 }
 else{
-  console.log(paymentIntent);
-  const paymentInfo ={
-    ...book, 
-   }
   if(paymentIntent.status === "succeeded"){
+            axiosSecure.patch(`/mySelected/${book._id}`,)
+            .then(res =>{
+              console.log(res.data);
+              if(res.data.modifiedCount){
+                Swal.fire({
+                  position: 'top-center',
+                  icon: 'success',
+                  title: 'Class Booked',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
+            })
+        
+          axiosSecure.patch(`/classEnroll/${book.classId}`,{
+            seat: clas.seat, totalEnrolled: clas.totalEnrolled
+          })
+          .then(res =>{
+            console.log(res.data);
+          })
 
 
   }

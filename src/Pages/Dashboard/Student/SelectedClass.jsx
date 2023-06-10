@@ -7,6 +7,7 @@ const SelectedClass = () => {
 
     const[selectClass, refetch]=useSeletedClass()
     console.log(selectClass);
+    const selectedClass = selectClass.filter(s => s.status === "selected")
     return (
         <div>
             <div className='flex justify-end'>
@@ -27,7 +28,7 @@ const SelectedClass = () => {
       </tr>
     </thead>
     <tbody>
-      {selectClass.map((clas,index) => <SelectClassRow refetch={refetch} index={index} clas={clas} key={clas._id} />)}
+      {selectedClass.map((clas,index) => <SelectClassRow refetch={refetch} index={index} clas={clas} key={clas._id} />)}
      
     </tbody>
   </table>

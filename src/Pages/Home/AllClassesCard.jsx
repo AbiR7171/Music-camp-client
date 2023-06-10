@@ -6,12 +6,12 @@ const AllClassesCard = ({clas}) => {
 
     const {user}= useContext(AuthContext)
 
-    const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user.displayName, email: user.email}
+    const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user.displayName, email: user.email, status:"selected"}
     
     const disable = clas.seats == 0 ;
 
     const handleSelectd = ()=>{
-        fetch("http://localhost:5000/bookings",
+        fetch("http://localhost:5000/selected",
         {
             method:"POST",
             headers:{
@@ -43,7 +43,7 @@ const AllClassesCard = ({clas}) => {
       <div className="badge badge-secondary">${clas.price}</div>
     </h2>
     <p>instructor : {clas.name}</p> 
-    <p>Available seats : {clas.seats}</p> 
+    <p>Available seats : {clas.seat}</p> 
     <div className="card-actions justify-start">
     <button disabled={disable} onClick={handleSelectd} className="btn btn-active btn-accent">Select</button>
     </div>
