@@ -1,44 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import useUsers from '../Pages/Hooks/useUsers';
 import { SiGoogleclassroom } from "react-icons/si";
 import { FaUsers,FaHome, FaBook } from "react-icons/fa";
 import { TbHandClick } from "react-icons/tb";
 import { BiSelectMultiple, BiBookAdd } from "react-icons/bi";
+import useAdmin from '../Pages/Hooks/useAdmin';
+import useInstructor from '../Pages/Hooks/useInstructor';
+import { AuthContext } from '../Routes/AuthProvider';
 
 
 const Dashboard = () => {
-     const[users]=useUsers()
      
-     const admin = false;
-     const student = true;
-     const instructor = false;
+    const [isAdmin]= useAdmin()
+    const[isInstructor]=useInstructor()
+    const {user}=useContext(AuthContext)
+   
 
     const dashboardItem = <>
+
     
-    {admin && 
+    {isAdmin && 
     <>
      <li><Link to="/dashboard/admin/manageClasses"><SiGoogleclassroom/>Manage Classes</Link></li>
      <li><Link to="/dashboard/admin/manageUsers"><FaUsers/>Manage users</Link></li>
     </>
     }
     {
-      student && <> 
-      <li><Link to="/dashboard/student/selectedClass"><TbHandClick/> My Selected classes</Link></li>
-      <li><Link to="/dashboard/student/enrolledClass"><BiSelectMultiple/> My Enrolled classes</Link></li>
-
-      </>
-    }
-
-    {
-      instructor && <>
+      isInstructor &&<>
          
          <li><Link to="/dashboard/instructor/addAClass"><BiBookAdd/> Add a class</Link></li>
          <li><Link to="/dashboard/instructor/myClasses"><FaBook/> My classes</Link></li>
 
 
       </>
+       
     }
+
+    { isAdmin || isInstructor &&
+    
+     <> 
+    <li><Link to="/dashboard/student/selectedClass"><TbHandClick/> My Selected classes</Link></li>
+    <li><Link to="/dashboard/student/enrolledClass"><BiSelectMultiple/> My Enrolled classes</Link></li>
+
+    </>  }
+ 
+   
+    
+
 
     </>
     
