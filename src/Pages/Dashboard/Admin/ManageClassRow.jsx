@@ -1,9 +1,9 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const ManageClassRow = ({cla, index, refetch}) => {
 
-    console.log(cla);
 
     const handleDeny = ()=>{
         fetch(`http://localhost:5000/class/deny/${cla._id}`,{
@@ -46,15 +46,15 @@ const ManageClassRow = ({cla, index, refetch}) => {
          })
     }
 
-    const handleFeedback = (event)=>{
+    const handleFeedback = (event, id)=>{
 
-        event.preventDefault()
+      event.preventDefault()
       
         const feedback = event.target.feedback.value;
         const update = {feedback}
   
-        fetch(`http://localhost:5000/feedback/${cla._id}`,{
-            method:"PATCH",
+        fetch(`http://localhost:5000/feedback/${id}`,{
+            method:"PUT",
             headers:{
                 "content-type":"application/json"
             },
@@ -98,10 +98,10 @@ const ManageClassRow = ({cla, index, refetch}) => {
 {/* Put this part before </body> tag */}
 <input type="checkbox" id="my_modal_7" className="modal-toggle" />
 <div className="modal">
-  <form onSubmit={handleFeedback} className="modal-box">
+  <form  className="modal-box">
     <h3 className="text-lg font-bold">Send FeedBack</h3>
     <textarea  name='feedback' placeholder="Write you " className="textarea textarea-bordered textarea-xs w-full max-w-xs" ></textarea>
-    <input  type="submit" className='block px-5 py-3  bg-green-800 text-white rounded-md hover:bg-green-600'/>
+    <button  type="submit" onClick={()=>handleFeedback(cla._id)} className='block px-5 py-3  bg-green-800 text-white rounded-md hover:bg-green-600'/>
   </form>
   <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
 </div>
