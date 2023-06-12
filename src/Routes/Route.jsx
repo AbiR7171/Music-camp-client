@@ -14,6 +14,9 @@ import UpdateClass from "../Pages/Dashboard/Instructor/UpdateClass";
 import AllClasses from "../Pages/Home/AllClasses";
 import AllInstructor from "../Pages/Home/AllInstructor";
 import Payment from "../Pages/Dashboard/Student/Payment";
+import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PrivateRoute";
+import InstructorRoute from "./InstructorRoute";
 
 
 const route = createBrowserRouter([
@@ -41,35 +44,35 @@ const route = createBrowserRouter([
           children:[
             {
                 path:"/dashboard/admin/manageClasses",
-                element:<ManageClasses/>
+                element:<AdminRoute><ManageClasses/></AdminRoute>
             },
             {
                path:"/dashboard/admin/manageUsers",
-               element:<ManageUsers/>
+               element:<AdminRoute><ManageUsers/></AdminRoute>
             },
             {
                 path:"/dashboard/student/selectedClass",
-                element:<SelectedClass/>
+                element:<PrivateRoute><SelectedClass/></PrivateRoute>
             },
             {
                 path:"/dashboard/student/enrolledClass",
-                element:<EnrolledClass/>
+                element:<PrivateRoute><EnrolledClass/></PrivateRoute>
             },
             {
                 path:"/dashboard/student/payment/:id",
-                element:<Payment/>
+                element:<PrivateRoute><Payment/></PrivateRoute>
             },
             {
                 path:"/dashboard/instructor/addAClass",
-                element:<AddAClass/>
+                element:<InstructorRoute><AddAClass/></InstructorRoute>
             },
             {
                 path:"/dashboard/instructor/myClasses",
-                element:<MyClasses/>
+                element:<InstructorRoute><MyClasses/></InstructorRoute>
             },
             {
                 path:"/dashboard/instructor/updateClass/:id",
-                element:<UpdateClass/>
+                element:<InstructorRoute><UpdateClass/></InstructorRoute>
             }
           ]
     },

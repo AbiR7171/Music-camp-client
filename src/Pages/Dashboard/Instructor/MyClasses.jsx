@@ -29,7 +29,7 @@ const MyClasses = () => {
      {classes.map((cla, index) => <tr key={cla._id}>
         <td>{index +1}</td>
         <td>{cla.className}</td>
-        <td className='text-start'>{cla.seats}</td>
+        <td className='text-start'>{cla.seat}</td>
         <td className='text-center'>{cla.totalEnrolled}</td>
         <td>{cla.price}</td>
         <td>{cla.status}</td>
@@ -42,7 +42,7 @@ const MyClasses = () => {
 <div className="modal">
   <div className="modal-box">
     <h3 className="text-lg font-bold">Feed Back!</h3>
-    <p  className="py-4">{cla.feedback}</p>
+    <p  className="py-4">{cla?.feedback}</p>
   </div>
   <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
 </div>

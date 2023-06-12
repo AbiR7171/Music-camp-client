@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const ManageClassRow = ({cla, index, refetch}) => {
 
-
+    console.log(cla);
 
     const handleDeny = ()=>{
         fetch(`http://localhost:5000/class/deny/${cla._id}`,{
@@ -53,7 +53,7 @@ const ManageClassRow = ({cla, index, refetch}) => {
         const feedback = event.target.feedback.value;
         const update = {feedback}
   
-        fetch(`http://localhost:5000/class/${cla._id}`,{
+        fetch(`http://localhost:5000/feedback/${cla._id}`,{
             method:"PATCH",
             headers:{
                 "content-type":"application/json"

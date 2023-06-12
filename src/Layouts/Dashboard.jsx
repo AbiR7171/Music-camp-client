@@ -14,6 +14,7 @@ const Dashboard = () => {
      
     const [isAdmin]= useAdmin()
     const[isInstructor]=useInstructor()
+    const vip = isAdmin ||isInstructor;
     const {user}=useContext(AuthContext)
    
 
@@ -37,7 +38,7 @@ const Dashboard = () => {
        
     }
 
-    { isAdmin || isInstructor &&
+    {  vip || user  &&
     
      <> 
     <li><Link to="/dashboard/student/selectedClass"><TbHandClick/> My Selected classes</Link></li>

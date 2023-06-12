@@ -21,7 +21,7 @@ const AddAClass = () => {
         const price = parseFloat(prices)
         const image = from.image.value;
 
-       const classes ={className,  name, email, seat, price, image, status:"pending", totalEnrolled:0}
+       const classes ={className,  name, email, seat, price, image, status:"pending", totalEnrolled:0, feedback:""}
        console.log(className, name, email, seats, price);
 
        fetch("http://localhost:5000/classes", {
@@ -45,6 +45,8 @@ const AddAClass = () => {
               })
         }
        })
+
+       
         
     }
     return (
