@@ -24,7 +24,7 @@ const EnrolledClass = () => {
       {enrolled.map((enroll,index) =>   <tr key={enroll._id} > 
         <th>{index + 1}</th>
         <td>{enroll.clasName}</td>
-        <td><img src={enroll.image} className='w-14 rounded-lg hover:w-52 duration-200' alt="" /></td>
+        <td><img src={enroll.image} className='w-14 h-12 rounded-lg hover:w-52 hover:h-52 duration-200' alt="" /></td>
         <td>{enroll.instructor}</td>
         <td>{enroll.price}</td>
       </tr> )}

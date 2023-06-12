@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import useUsers from '../Pages/Hooks/useUsers';
 import { SiGoogleclassroom } from "react-icons/si";
@@ -8,6 +8,7 @@ import { BiSelectMultiple, BiBookAdd } from "react-icons/bi";
 import useAdmin from '../Pages/Hooks/useAdmin';
 import useInstructor from '../Pages/Hooks/useInstructor';
 import { AuthContext } from '../Routes/AuthProvider';
+import { document } from 'postcss';
 
 
 const Dashboard = () => {
@@ -16,6 +17,9 @@ const Dashboard = () => {
     const[isInstructor]=useInstructor()
     const vip = isAdmin ||isInstructor;
     const {user}=useContext(AuthContext)
+
+ 
+
    
 
     const dashboardItem = <>
@@ -38,7 +42,7 @@ const Dashboard = () => {
        
     }
 
-    {  vip || user  &&
+    {  vip || user  &&  
     
      <> 
     <li><Link to="/dashboard/student/selectedClass"><TbHandClick/> My Selected classes</Link></li>

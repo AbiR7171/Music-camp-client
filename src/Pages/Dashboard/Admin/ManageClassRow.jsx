@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const ManageClassRow = ({cla, index, refetch}) => {
+
+
+    const[id, setId]=useState()
+    const[axiosSecure]=useAxiosSecure()
+   
 
 
     const handleDeny = ()=>{
@@ -46,34 +52,18 @@ const ManageClassRow = ({cla, index, refetch}) => {
          })
     }
 
-    const handleFeedback = (event, id)=>{
+    const handleFeedback = (e)=>{
 
-      event.preventDefault()
+        e.preventDefault();
       
-        const feedback = event.target.feedback.value;
-        const update = {feedback}
-  
-        fetch(`http://localhost:5000/feedback/${id}`,{
-            method:"PUT",
-            headers:{
-                "content-type":"application/json"
-            },
-            body: JSON.stringify(update)
+        const feedback = e.target.feedback.value;
+        
+    
+        axiosSecure.put(`/feedback/${id}`, {feedback: feedback})
+        .then(res =>{
+          console.log(res.data);
         })
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data);
-            if(data.modifiedCount >0){
-                event.target.reset()
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Feedback send',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
+       
   
       }
     return (
@@ -90,21 +80,6 @@ const ManageClassRow = ({cla, index, refetch}) => {
           <div className='flex space-x-2'>
           <button disabled={cla.status === "approve" || cla.status === "deny"} onClick={handleAprove} className="btn btn-xs bg-orange-400">Approve</button>
           <button  onClick={handleDeny} disabled={cla.status === "approve" || cla.status === "deny"} className="btn btn-xs bg-orange-400">Deny</button>
-          {/* Open the modal using ID.showModal() method */}
-{/* Open the modal using ID.showModal() method */}
-{/* The button to open modal */}
-<label htmlFor="my_modal_7" className="btn btn-xs bg-orange-400"> Send feedback</label>
-
-{/* Put this part before </body> tag */}
-<input type="checkbox" id="my_modal_7" className="modal-toggle" />
-<div className="modal">
-  <form  className="modal-box">
-    <h3 className="text-lg font-bold">Send FeedBack</h3>
-    <textarea  name='feedback' placeholder="Write you " className="textarea textarea-bordered textarea-xs w-full max-w-xs" ></textarea>
-    <button  type="submit" onClick={()=>handleFeedback(cla._id)} className='block px-5 py-3  bg-green-800 text-white rounded-md hover:bg-green-600'/>
-  </form>
-  <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
-</div>
           </div>
         </td>
       </tr>

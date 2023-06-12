@@ -1,5 +1,6 @@
 import React from 'react';
 import useUsers from '../Hooks/useUsers';
+import UseSectionHeader from '../Hooks/useSectionHeader';
 
 const PopularInstructor = () => {
 
@@ -9,7 +10,9 @@ const PopularInstructor = () => {
     const instructor = users.filter(u => u.role === "instructor")
     console.log(instructor);
     return (
-        <div className='grid lg:grid-cols-3 gap-3 mt-10 mb-10'>
+       <div>
+        <UseSectionHeader title="Popular Instructor" subTitle="Here is Some of our Best Instructor"/>
+         <div className='grid lg:grid-cols-3 gap-3 mt-10 mb-10'>
             {instructor.map(ins =><div className="card w-96 glass font-serif">
   <figure><img src={ins.photo} alt="car!"/></figure>
   <div className="card-body">
@@ -21,6 +24,7 @@ const PopularInstructor = () => {
   </div>
 </div>)}
         </div>
+       </div>
     );
 };
 
