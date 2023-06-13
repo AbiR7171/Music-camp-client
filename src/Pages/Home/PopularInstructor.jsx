@@ -1,6 +1,7 @@
 import React from 'react';
 import useUsers from '../Hooks/useUsers';
 import UseSectionHeader from '../Hooks/useSectionHeader';
+import { motion } from "framer-motion"
 
 const PopularInstructor = () => {
 
@@ -13,7 +14,13 @@ const PopularInstructor = () => {
        <div>
         <UseSectionHeader title="Popular Instructor" subTitle="Here is Some of our Best Instructor"/>
          <div className='grid lg:grid-cols-3 gap-3 mt-10 mb-10'>
-            {instructor.slice(0,6).map(ins =><div className="card w-96 bg-orange-500 font-serif">
+            {instructor.slice(0,6).map(ins =><motion.div whileHover={{scale:1.1}}  drag initial={{ scale: 0 }}
+  animate={{ rotate:360, scale: 1 }}
+  transition={{
+    type: "spring",
+    stiffness: 260,
+    damping: 20
+  }}className="card w-96 bg-orange-500 bg-opacity-70 text-white font-serif">
   <figure><img src={ins.photo} alt="car!"/></figure>
   <div className="card-body">
     <h2 className="card-title">{ins.name}</h2>
@@ -22,7 +29,7 @@ const PopularInstructor = () => {
       <button className="btn btn-primary">Visit Profile</button>
     </div>
   </div>
-</div>)}
+</motion.div>)}
         </div>
        </div>
     );

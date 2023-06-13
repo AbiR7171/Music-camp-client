@@ -5,6 +5,7 @@ import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import SocailLogin from './SocailLogin';
 
 
 const LogIn = () => {
@@ -96,7 +97,8 @@ const LogIn = () => {
                   </p>
               </div>
 
-              <div>
+              <div> 
+                <SocailLogin/>
                 <button
                   type="submit"
                   className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
