@@ -14,12 +14,13 @@ const PopularInstructor = () => {
        <div>
         <UseSectionHeader title="Popular Instructor" subTitle="Here is Some of our Best Instructor"/>
          <div className='grid lg:grid-cols-3 gap-3 mt-10 mb-10'>
-            {instructor.slice(0,6).map(ins =><motion.div whileHover={{scale:1.1}}  drag initial={{ scale: 0 }}
+            {instructor.slice(0,6).map(ins =><motion.div whileHover={{scale:1.1}}   initial={{ scale: 0 }}
   animate={{ rotate:360, scale: 1 }}
   transition={{
     type: "spring",
     stiffness: 260,
-    damping: 20
+    damping: 20,
+    duration:2000,
   }}className="card w-96 bg-orange-500 bg-opacity-70 text-white font-serif">
   <figure><img src={ins.photo} alt="car!"/></figure>
   <div className="card-body">

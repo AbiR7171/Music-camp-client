@@ -4,6 +4,7 @@ import UseSectionHeader from '../Hooks/useSectionHeader';
 import Bus from "../../assets/Animation/summerCamp2.json"
 import fire from "../../assets/Animation/summerCamp1.json"
 import song from "../../assets/Animation/sign2.json"
+import { motion } from "framer-motion"
 
 const OurActivity = () => {
     return (
@@ -14,7 +15,7 @@ const OurActivity = () => {
              <h2 className="text-2xl text-center text-orange-500 font-serif">Our Bus Journey</h2>
              <div className='divider w-1/2 mx-auto'></div>
            <div className='grid grid-cols-2'>
-             <p > <Lottie animationData={Bus}   loop={true} /></p>
+             <motion.p drag> <Lottie animationData={Bus}   loop={true} /></motion.p>
              <div>
              <div className="card  mt-32 bg-neutral text-neutral-content font-serif">
   <div className="card-body items-center text-center">
@@ -37,14 +38,14 @@ The summer camp fire festival ignites the night with flickering flames and a con
   </div>
   </div>
              </div>
-             <p > <Lottie animationData={fire}   loop={true} /></p>
+             <motion.p  drag> <Lottie animationData={fire}   loop={true} /></motion.p>
             </div>
            </div>
            <div>
              <h2 className="text-2xl text-center text-orange-500 font-serif">Our Bus Journey</h2>
              <div className='divider w-1/2 mx-auto'></div>
            <div className='grid grid-cols-2'>
-             <p > <Lottie animationData={song}   loop={true} /></p>
+             <motion.p  drag> <Lottie animationData={song}   loop={true} /></motion.p>
              <div>
              <div className="card  mt-40 bg-neutral text-neutral-content font-serif">
   <div className="card-body items-center text-center">
