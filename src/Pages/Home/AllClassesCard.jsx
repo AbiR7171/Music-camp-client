@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Routes/AuthProvider';
+import useAdmin from '../Hooks/useAdmin';
+import useInstructor from '../Hooks/useInstructor';
 
 const AllClassesCard = ({clas}) => {
 
     const {user}= useContext(AuthContext)
+    const[isAdmin]=useAdmin()
+    const[isInstructor]=useInstructor()
 
     const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user?.displayName, email: user?.email, status:"selected", seat: clas.seat, enrolled: clas.totalEnrolled}
     
-    const disable = clas.seats == 0 ;
+    const disable = clas.seat == 0 || isAdmin ||isInstructor ;
+
 
     const handleSelectd = ()=>{
-        fetch("http://localhost:5000/selected",
+        fetch("https://sports-camp-server-seven.vercel.app/selected",
         {
             method:"POST",
             headers:{

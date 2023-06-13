@@ -25,7 +25,7 @@ const AddAClass = () => {
        const classes ={className,  name, email, seat, price, image, status:"pending", totalEnrolled:0}
        console.log(className, name, email, seats, price);
 
-       fetch("http://localhost:5000/classes", {
+       fetch("https://sports-camp-server-seven.vercel.app/classes", {
         method:"POST",
          headers:{
             "content-type": "application/json"

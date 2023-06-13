@@ -10,7 +10,7 @@ const SelectClassRow = ({clas, index,refetch}) => {
     const {_id, price, image, instructor, clasName}=clas
 
     const handleDetete = id =>{
-       fetch(`http://localhost:5000/mySelected/${id}`,{
+       fetch(`https://sports-camp-server-seven.vercel.app/mySelected/${id}`,{
         method:"DELETE"
        })
        .then(res => res.json())

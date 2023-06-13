@@ -4,11 +4,13 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 
 const SignUp = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const[error, setError]=useState("")
+  const[show, setShow]=useState(false)
 
   const navigate = useNavigate()
 
@@ -34,7 +36,7 @@ const SignUp = () => {
 
    const user = {name: data.name, email: data.email, photo:data.photoUrl, role: "student"}
 
-        fetch("http://localhost:5000/users",{
+        fetch("https://sports-camp-server-seven.vercel.app/users",{
           method:"POST",
           headers:{
             "content-type": "application/json"
@@ -62,8 +64,7 @@ const SignUp = () => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `${error.message}`,
-        footer: '<a href="">Why do I have this issue?</a>'
+        text: `${error.message}`
       })
     })
 
@@ -119,6 +120,7 @@ const SignUp = () => {
                 <label htmlFor="password" className="block text-gray-700 font-medium">
                   Password
                 </label>
+                <div>
                 <input
                   {...register("password",{
                     
@@ -128,10 +130,20 @@ const SignUp = () => {
                     
                   })}
                   name="password"
-                  type="password"
+                  type={`${show ? "text" : "password"}`}
                   className="mt-1 px-4 py-2 w-full bg-green-500 bg-opacity-20 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                   placeholder="Enter your password"
-                />
+                /> 
+                 <p className='absolute end-0 me-9 -mt-8 text-2xl'>
+                  
+                  
+                  {
+                     show ? <AiFillEyeInvisible onClick={()=> setShow(false)}/> :
+                     <AiFillEye onClick={()=>setShow(true)}/>
+                  }
+                  
+                  </p>
+                </div>
                  {errors.password?.type === 'required' && <p className='text-red-700 font-serif mt-2'>Password is required</p>}
                 {errors.password?.type === 'minLength' && <p className='text-red-700 font-serif mt-2'>Password must be 6 letter</p>}
                 {errors.password?.type === 'pattern' && <p className='text-red-700 font-serif mt-2'>Password must one capital letter and special character </p>}

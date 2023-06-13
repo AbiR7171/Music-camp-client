@@ -9,7 +9,7 @@ const PopularClasses = () => {
 
     
    useEffect(()=>{
-    fetch("http://localhost:5000/classes")
+    fetch("https://sports-camp-server-seven.vercel.app/classes")
     .then(res => res.json())
     .then(data =>{
         console.log(data);

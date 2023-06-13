@@ -17,7 +17,7 @@ const Payment = () => {
 
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/mySelected/${id.id}`)
+        fetch(`https://sports-camp-server-seven.vercel.app/mySelected/${id.id}`)
         .then(res => res.json())
         .then(data => {
   

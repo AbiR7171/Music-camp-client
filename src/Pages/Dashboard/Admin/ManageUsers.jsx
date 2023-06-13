@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import useUsers from '../../Hooks/useUsers';
-import axios from 'axios';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import UseSectionHeader from '../../Hooks/useSectionHeader';
@@ -55,7 +54,7 @@ const ManageUsers = () => {
     const handleUserDeleter =user=>{
 
 
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://sports-camp-server-seven.vercel.app/users/${user._id}`, {
             method:"DELETE"
         })
         .then(res => res.json())

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 
 const LogIn = () => {
@@ -11,6 +12,7 @@ const LogIn = () => {
  
 
   const navigate = useNavigate()
+  const[show, setShow]=useState(false)
 
   const{handlelogIn}=useContext(AuthContext)
 
@@ -35,8 +37,7 @@ const LogIn = () => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: `${error.message}`,
-          footer: '<a href="">Why do I have this issue?</a>'
+          text: `${error.message}`
         })
     })
     
@@ -81,10 +82,18 @@ const LogIn = () => {
                 <input
                   {...register("password")}
                   name="password"
-                  type="password"
+                  type={`${show ? "text": "password"}`}
                   className="mt-1 px-4 py-2 w-full bg-green-500 bg-opacity-20 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
                   placeholder="Enter your password"
                 />
+                 <p className='absolute end-0 me-9 -mt-8 text-2xl'>
+                  
+                 {
+                  show ? <AiFillEyeInvisible onClick={()=> setShow(false)}/> :
+                  <AiFillEye onClick={()=>setShow(true)}/>
+                 }
+                  
+                  </p>
               </div>
 
               <div>

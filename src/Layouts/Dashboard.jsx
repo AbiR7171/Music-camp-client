@@ -8,7 +8,6 @@ import { BiSelectMultiple, BiBookAdd } from "react-icons/bi";
 import useAdmin from '../Pages/Hooks/useAdmin';
 import useInstructor from '../Pages/Hooks/useInstructor';
 import { AuthContext } from '../Routes/AuthProvider';
-import { document } from 'postcss';
 
 
 const Dashboard = () => {
@@ -18,7 +17,7 @@ const Dashboard = () => {
     const vip = isAdmin ||isInstructor;
     const {user}=useContext(AuthContext)
 
- 
+   console.log(isInstructor);
 
    
 

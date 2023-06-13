@@ -5,7 +5,9 @@ import { useQuery } from '@tanstack/react-query';
 
 const useAdmin = () => {
    const {user, loading}=useContext(AuthContext)
+   console.log(user);
    const[axiosSecure]=useAxiosSecure();
+  
 
    const {data:isAdmin, isLoading}= useQuery({
 
