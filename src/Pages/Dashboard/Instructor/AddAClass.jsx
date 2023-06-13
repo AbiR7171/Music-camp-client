@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Routes/AuthProvider';
 import Swal from 'sweetalert2';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const AddAClass = () => {
     const {user}=useContext(AuthContext);
@@ -50,7 +51,8 @@ const AddAClass = () => {
         
     }
     return (
-        <div>
+        <div className='mt-10 mb-10'>
+          <UseSectionHeader title="Add A Class"/>
                 <form onSubmit={hadleSubmit} className="w-[600px] mx-auto">
       <div className="mb-4">
         <label className="block text-gray-700">Class Name</label>

@@ -3,12 +3,14 @@ import useClasses from '../../Hooks/useClasses';
 import { GrUpdate } from "react-icons/gr";
 import { Link } from 'react-router-dom';
 import UpdateClass from './UpdateClass';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const MyClasses = () => {
     const[classes]=useClasses()
     console.log(classes);
     return (
-        <div>
+        <div className='mt-10 mb-10'>
+          <UseSectionHeader  title="Your Added Class"/>
            <div className="overflow-x-auto w-[900px]">
   <table className="table">
     {/* head */}

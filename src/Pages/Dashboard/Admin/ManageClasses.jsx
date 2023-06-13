@@ -3,6 +3,7 @@ import useManageClasses from '../../Hooks/useManageClasses';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ManageClassRow from './ManageClassRow';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const ManageClasses = () => {
 
@@ -13,6 +14,7 @@ const ManageClasses = () => {
     
     return (
         <div>
+          <UseSectionHeader title={"Manage Classes"}/>
             <div className="overflow-x-auto">
   <table className="table table-zebra w-[1000px]">
     {/* head */}

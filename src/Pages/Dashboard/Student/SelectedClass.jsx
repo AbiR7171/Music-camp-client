@@ -2,6 +2,7 @@ import React from 'react';
 import useSeletedClass from '../../Hooks/useSeletedClass';
 import SelectClassRow from './SelectClassRow';
 import { BsFillSendCheckFill } from "react-icons/bs";
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const SelectedClass = () => {
 
@@ -10,6 +11,7 @@ const SelectedClass = () => {
     const selectedClass = selectClass.filter(s => s.status === "selected")
     return (
         <div>
+          <UseSectionHeader title={"Your Selected Classes"}/>
             <div className='flex justify-end'>
             
             </div>
@@ -28,6 +30,7 @@ const SelectedClass = () => {
       </tr>
     </thead>
     <tbody>
+      
       {selectedClass.map((clas,index) => <SelectClassRow refetch={refetch} index={index} clas={clas} key={clas._id} />)}
      
     </tbody>

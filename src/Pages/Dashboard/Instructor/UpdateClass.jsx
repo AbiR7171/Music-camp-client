@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Routes/AuthProvider';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 
 const UpdateClass = () => {
@@ -64,6 +65,7 @@ const UpdateClass = () => {
 
     return (
         <div>
+          <UseSectionHeader title="Update Your Class"/>
              <form onSubmit={handleUpdate}  className="w-[600px] mx-auto">
       <div className="mb-4">
         <label className="block text-gray-700">Class Name</label>

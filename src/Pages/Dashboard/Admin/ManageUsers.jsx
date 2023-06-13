@@ -3,6 +3,7 @@ import useUsers from '../../Hooks/useUsers';
 import axios from 'axios';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const ManageUsers = () => {
 
@@ -78,6 +79,7 @@ const ManageUsers = () => {
 
     return (
         <div>
+          <UseSectionHeader title={"Manage Users"}/>
             <div className="overflow-x-auto">
   <table className="table font-serif ">
     {/* head */}

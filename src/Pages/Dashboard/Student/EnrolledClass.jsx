@@ -1,5 +1,6 @@
 import React from 'react';
 import useSeletedClass from '../../Hooks/useSeletedClass';
+import UseSectionHeader from '../../Hooks/useSectionHeader';
 
 const EnrolledClass = () => {
     const[selectClass, refetch]=useSeletedClass()
@@ -8,6 +9,7 @@ const EnrolledClass = () => {
     console.log(enrolled);
     return (
         <div>
+          <UseSectionHeader title={"Your Enrolled Classes"}/>
             <div className="overflow-x-auto">
   <table className="table table-zebra w-[900px]">
     {/* head */}

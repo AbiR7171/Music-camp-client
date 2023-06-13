@@ -1,6 +1,7 @@
 import React from 'react';
 import useManageClasses from '../Hooks/useManageClasses';
 import AllClassesCard from './AllClassesCard';
+import UseSectionHeader from '../Hooks/useSectionHeader';
 
 const AllClasses = () => {
 
@@ -14,7 +15,8 @@ const AllClasses = () => {
     
 
     return (
-        <div>
+        <div className='mt-10'>
+            <UseSectionHeader title="Our Classes" subTitle="Choose Your Best Class"/>
            <div className='mt-10 mb-10 grid lg:grid-cols-3'>
            {approveClasses.map(clas => <AllClassesCard clas={clas} key={clas._id}/>)}
            </div>
