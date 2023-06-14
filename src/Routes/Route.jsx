@@ -17,12 +17,14 @@ import Payment from "../Pages/Dashboard/Student/Payment";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import InstructorRoute from "./InstructorRoute";
+import ErrorPage from "../Components/ErrorPage";
 
 
 const route = createBrowserRouter([
     {
         path:"/",
         element: <Main/>,
+        errorElement:<ErrorPage/>,
         children:[
             {
                 path:"/",
@@ -41,6 +43,7 @@ const route = createBrowserRouter([
     {
           path:"/dashboard",
           element:<Dashboard/>,
+          errorElement:<ErrorPage/>,
           children:[
             {
                 path:"/dashboard/admin/manageClasses",
