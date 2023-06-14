@@ -53,24 +53,41 @@ const ManageUsers = () => {
 
     const handleUserDeleter =user=>{
 
+      axiosSecure.delete(`/users/${user._id}`)
+      .then(res =>{
+        if(res.data.deletedCount > 0){
+          refetch()
+          Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: `${user.name} deleted`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+        }
+      })
 
-        fetch(`https://sports-camp-server-seven.vercel.app/users/${user._id}`, {
-            method:"DELETE"
-        })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.deletedCount > 0){
-                refetch()
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: `${user.name} deleted`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
 
-            }
-        })
+        // fetch(`https://sports-camp-server-seven.vercel.app/users/${user._id}`, {
+        //     method:"DELETE",
+        //     headers:{
+        //       authorization :`Bearer ${localStorage.getItem("Music-access-token")}` 
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(data =>{
+        //     if(data.deletedCount > 0){
+        //         refetch()
+        //         Swal.fire({
+        //             position: 'top-center',
+        //             icon: 'success',
+        //             title: `${user.name} deleted`,
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //           })
+
+        //     }
+        // })
         
 
     }

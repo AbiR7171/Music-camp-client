@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useManageClasses from '../Hooks/useManageClasses';
 import AllClassesCard from './AllClassesCard';
 import UseSectionHeader from '../Hooks/useSectionHeader';
 
 const AllClasses = () => {
 
-    const [classes]=useManageClasses()
-    console.log(classes);
+    const[approve,setApprove]=useState([])
+    console.log(approve);
 
-    const approveClasses = classes.filter(cla => cla.status === "approve" )
-    console.log(approveClasses);
-
-
+   
+    useEffect(()=>{
+        fetch("https://sports-camp-server-seven.vercel.app/allClass")
+        .then(res => res.json())
+        .then(data =>{
+          const approve =   data.filter(d => d.status === "approve")
+          setApprove(approve)
+        })
+    },[])
     
 
     return (
         <div className='mt-10'>
             <UseSectionHeader title="Our Classes" subTitle="Choose Your Best Class"/>
            <div className='mt-10 mb-10 grid lg:grid-cols-3'>
-           {approveClasses.map(clas => <AllClassesCard clas={clas} key={clas._id}/>)}
+           {approve.map(clas => <AllClassesCard clas={clas} key={clas._id}/>)}
            </div>
         </div>
     );

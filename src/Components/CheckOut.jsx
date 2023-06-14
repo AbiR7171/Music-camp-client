@@ -6,6 +6,7 @@ import useAxiosSecure from '../Pages/Hooks/useAxiosSecure';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Routes/AuthProvider';
+import "./CheckOut.css"
 
 const CheckOut = ({book}) => {
 
@@ -20,6 +21,7 @@ const CheckOut = ({book}) => {
     const[axiosSecure]=useAxiosSecure()
     const {user}=useContext(AuthContext)
     const [clientSecret, setClientSecret] = useState("");
+    const[ transactionId,  setTransactionId]=useState()
 
     useEffect(()=>{
 
@@ -103,6 +105,26 @@ else{
 }
 
 console.log(paymentIntent);
+
+if (paymentIntent.status === 'succeeded') {
+  setTransactionId(paymentIntent.id);
+  // save payment information to the server
+  const payment = {
+      email: user?.email,
+      transactionId: paymentIntent.id,
+      price,
+      date: new Date(),
+      status: 'Paid',
+  }
+  axiosSecure.post('/payment', payment)
+      .then(res => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+              // display confirm
+          }
+      })
+}
+
 
     }
 

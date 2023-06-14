@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "firebase/auth";
+import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth";
 import app from '../Firebase/firebase.confiq';
 import useAxiosSecure from '../Pages/Hooks/useAxiosSecure';
 import axios from 'axios';
+import { Result } from 'postcss';
 
 
 
@@ -11,8 +12,12 @@ const AuthProvider = ({children}) => {
      
     const [user, setUser]=useState(null)
     const[loading, setLoading]=useState(true)
+
+    const googleProvider = new GoogleAuthProvider();
     
-    
+    const handleGoogleLogin =()=>{
+        return signInWithPopup(auth,googleProvider)
+    }
 
 
     const auth = getAuth(app)
@@ -59,7 +64,7 @@ const AuthProvider = ({children}) => {
                 setUser(currentUser)
                 setLoading(false)
                 if(currentUser){
-                    axios.post("http://localhost:5000/jwt", {
+                    axios.post("https://sports-camp-server-seven.vercel.app/jwt", {
                         email: currentUser.email
                     })
                     .then(data => {
@@ -82,7 +87,8 @@ const AuthProvider = ({children}) => {
         user,
         handlelogIn,
         handleUpdateProfile,
-        handleLogOut
+        handleLogOut,
+        handleGoogleLogin
     }
     return (
         <AuthContext.Provider value={authInfo}>

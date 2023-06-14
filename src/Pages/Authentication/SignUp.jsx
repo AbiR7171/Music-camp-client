@@ -5,9 +5,14 @@ import { AuthContext } from '../../Routes/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import SocailLogin from './SocailLogin';
 
 
 const SignUp = () => {
+
+ 
+  const[axiosSecure]=useAxiosSecure()
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const[error, setError]=useState("")
   const[show, setShow]=useState(false)
@@ -36,10 +41,28 @@ const SignUp = () => {
 
    const user = {name: data.name, email: data.email, photo:data.photoUrl, role: "student"}
 
+      
+        axiosSecure.post("/users", {
+          user
+        })
+        .then(res =>{
+            if(res.data.insertedId){
+              Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Sign Up successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+        })
+
+
         fetch("https://sports-camp-server-seven.vercel.app/users",{
           method:"POST",
           headers:{
-            "content-type": "application/json"
+            "content-type": "application/json",
+            authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
           },
           body:JSON.stringify(user)
         })
@@ -178,6 +201,7 @@ const SignUp = () => {
               </div>
 
               <div>
+                <SocailLogin/>
                 <button
                   type="submit"
                   className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"

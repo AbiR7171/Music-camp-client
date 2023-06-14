@@ -11,7 +11,10 @@ const SelectClassRow = ({clas, index,refetch}) => {
 
     const handleDetete = id =>{
        fetch(`https://sports-camp-server-seven.vercel.app/mySelected/${id}`,{
-        method:"DELETE"
+        method:"DELETE",
+        headers:{
+          authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+        }
        })
        .then(res => res.json())
        .then(data =>{

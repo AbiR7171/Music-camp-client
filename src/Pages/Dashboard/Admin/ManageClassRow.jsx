@@ -12,44 +12,79 @@ const ManageClassRow = ({cla, index, refetch}) => {
 
 
     const handleDeny = ()=>{
-        fetch(`http://localhost:5000/class/deny/${cla._id}`,{
-            method:"PATCH"
-         })
-         .then(res => res.json())
-         .then(data =>{
-            console.log(data);
-            if(data.modifiedCount){
-                refetch()
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'class Deny',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-         })
+
+      axiosSecure.patch(`/class/deny/${cla._id}`)
+      .then(res =>{
+        if(res.data.modifiedCount > 0){
+          refetch()
+                  Swal.fire({
+                      position: 'top-center',
+                      icon: 'success',
+                      title: 'class Deny',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+        }
+      })
+        // fetch(`https://sports-camp-server-seven.vercel.app/class/deny/${cla._id}`,{
+        //     method:"PATCH",
+        //     headers:{
+        //       authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+        //     }
+        //  })
+        //  .then(res => res.json())
+        //  .then(data =>{
+        //     console.log(data);
+        //     if(data.modifiedCount){
+        //         refetch()
+        //         Swal.fire({
+        //             position: 'top-center',
+        //             icon: 'success',
+        //             title: 'class Deny',
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //           })
+        //     }
+        //  })
     }
 
 
     const handleAprove =()=>{
-         fetch(`http://localhost:5000/class/approve/${cla._id}`,{
-            method:"PATCH"
-         })
-         .then(res => res.json())
-         .then(data =>{
-            console.log(data);
-            if(data.modifiedCount){
-                refetch()
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'class approve',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-         })
+
+
+      axiosSecure.patch(`/class/approve/${cla._id}`)
+      .then(res =>{
+        if(res.data.modifiedCount > 0){
+          refetch()
+                  Swal.fire({
+                      position: 'top-center',
+                      icon: 'success',
+                      title: 'class approve',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+        }
+      })
+        //  fetch(`https://sports-camp-server-seven.vercel.app/class/approve/${cla._id}`,{
+        //     method:"PATCH",
+        //     headers:{
+        //       authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+        //     }
+        //  })
+        //  .then(res => res.json())
+        //  .then(data =>{
+        //     console.log(data);
+        //     if(data.modifiedCount){
+        //         refetch()
+        //         Swal.fire({
+        //             position: 'top-center',
+        //             icon: 'success',
+        //             title: 'class approve',
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //           })
+        //     }
+        //  })
     }
 
     const handleFeedback = (e)=>{

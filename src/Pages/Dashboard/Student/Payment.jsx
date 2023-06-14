@@ -17,7 +17,11 @@ const Payment = () => {
 
 
     useEffect(()=>{
-        fetch(`https://sports-camp-server-seven.vercel.app/mySelected/${id.id}`)
+        fetch(`https://sports-camp-server-seven.vercel.app/mySelected/${id.id}`,{
+            headers:{
+                authorization : localStorage.getItem("Music-access-token")
+            }
+        })
         .then(res => res.json())
         .then(data => {
   

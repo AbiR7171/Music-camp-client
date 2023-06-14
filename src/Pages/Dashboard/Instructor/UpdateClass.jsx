@@ -3,12 +3,14 @@ import { AuthContext } from '../../../Routes/AuthProvider';
 import { useLoaderData, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UseSectionHeader from '../../Hooks/useSectionHeader';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 
 const UpdateClass = () => {
  
 
     const {user}=useContext(AuthContext)
+    const[axiosSecure]=useAxiosSecure()
 
     const[oldData, setOldData]=useState([])
     console.log(oldData);
@@ -17,11 +19,24 @@ const UpdateClass = () => {
    
 
     useEffect(()=>{
-      fetch(`http://localhost:5000/myClasses/${data.id}`)
-      .then(res => res.json())
-      .then(data => {
-        const datas = data.map(d => setOldData(d))
-      })
+
+        axiosSecure.get(`myClasses/${data.id}`)
+        .then(res =>{
+           const data = res.data.map(d => setOldData(d))
+        })
+    
+
+      // fetch(`https://sports-camp-server-seven.vercel.app/myClasses/${data.id}`,{
+      //   headers:{
+      //     authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+      //   }
+      // })
+      // .then(res => res.json())
+      // .then(data => {
+      //   const datas = data.map(d => setOldData(d))
+      // })
+
+
     },[])
 
 
@@ -40,26 +55,40 @@ const UpdateClass = () => {
     
        const updateData = {className,  seats, price, image}
 
-       fetch(`http://localhost:5000/classes/${data.id}`, {
-        method:"PUT",
-        headers:{
-          "content-type":"application/json"
-        },
-        body:JSON.stringify(updateData)
+       axiosSecure.put(`/classes/${data.id}`)
+       .then(res =>{
+          if(res.data.modifiedCount> 0){
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'class update',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
        })
-       .then(res => res.json())
-       .then(data => {
-        console.log(data);
-        if(data.modifiedCount >0){
-          Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'class update',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
-       })
+
+      //  fetch(`https://sports-camp-server-seven.vercel.app/classes/${data.id}`, {
+      //   method:"PUT",
+      //   headers:{
+      //     "content-type":"application/json",
+      //     authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+      //   },
+      //   body:JSON.stringify(updateData)
+      //  })
+      //  .then(res => res.json())
+      //  .then(data => {
+      //   console.log(data);
+      //   if(data.modifiedCount >0){
+      //     Swal.fire({
+      //       position: 'top-center',
+      //       icon: 'success',
+      //       title: 'class update',
+      //       showConfirmButton: false,
+      //       timer: 1500
+      //     })
+      //   }
+      //  })
     }
 
 

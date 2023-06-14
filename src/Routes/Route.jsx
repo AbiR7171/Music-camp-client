@@ -18,6 +18,8 @@ import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import InstructorRoute from "./InstructorRoute";
 import ErrorPage from "../Components/ErrorPage";
+import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory";
+
 
 
 const route = createBrowserRouter([
@@ -31,7 +33,7 @@ const route = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path:"/classes",
+                path:"/allClass",
                 element:<AllClasses/>
             },
             {
@@ -64,6 +66,10 @@ const route = createBrowserRouter([
             {
                 path:"/dashboard/student/payment/:id",
                 element:<PrivateRoute><Payment/></PrivateRoute>
+            },
+            {
+                path:"/dashboard/student/history",
+                element:<PrivateRoute><PaymentHistory/></PrivateRoute>
             },
             {
                 path:"/dashboard/instructor/addAClass",

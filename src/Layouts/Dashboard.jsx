@@ -46,6 +46,7 @@ const Dashboard = () => {
      <> 
     <li><Link to="/dashboard/student/selectedClass"><TbHandClick/> My Selected classes</Link></li>
     <li><Link to="/dashboard/student/enrolledClass"><BiSelectMultiple/> My Enrolled classes</Link></li>
+    <li><Link to="/dashboard/student/history"><BiSelectMultiple/> Payment History</Link></li>
 
     </>  }
  

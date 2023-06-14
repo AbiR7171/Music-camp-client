@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Routes/AuthProvider';
 import Swal from 'sweetalert2';
 import UseSectionHeader from '../../Hooks/useSectionHeader';
+import axios from 'axios';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const AddAClass = () => {
     const {user}=useContext(AuthContext);
+    const[axiosSecure]=useAxiosSecure()
    
     const hadleSubmit = event =>{
 
@@ -25,27 +28,46 @@ const AddAClass = () => {
        const classes ={className,  name, email, seat, price, image, status:"pending", totalEnrolled:0}
        console.log(className, name, email, seats, price);
 
-       fetch("https://sports-camp-server-seven.vercel.app/classes", {
-        method:"POST",
-         headers:{
-            "content-type": "application/json"
-         },
-         body:JSON.stringify(classes)
-       })
-       .then(res => res.json())
-       .then(data =>{
-        console.log(data);
-        if(data.insertedId){
+
+       axiosSecure.post("/classes", {
+        className,  name, email, seat, price, image, status:"pending", totalEnrolled:0
+       }).then(res =>{
+        if(res.data.insertedId){
           from.reset()
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'class added',
-                showConfirmButton: false,
-                timer: 1500
-              })
+          Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'class added',
+              showConfirmButton: false,
+              timer: 1500
+            })
         }
        })
+
+       
+
+      //  fetch("https://sports-camp-server-seven.vercel.app/classes", {
+      //   method:"POST",
+      //    headers:{
+      //       "content-type": "application/json",
+      //       authorization :`Bearer ${localStorage.getItem("Music-access-token")}`
+      //    },
+      //    body:JSON.stringify(classes)
+      //  })
+      //  .then(res => res.json())
+      //  .then(data =>{
+      //   console.log(data);
+      //   if(data.insertedId){
+      //     from.reset()
+      //       Swal.fire({
+      //           position: 'top-center',
+      //           icon: 'success',
+      //           title: 'class added',
+      //           showConfirmButton: false,
+      //           timer: 1500
+      //         })
+      //   }
+      //  })
 
        
         
