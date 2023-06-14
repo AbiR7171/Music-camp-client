@@ -4,66 +4,68 @@ import { AuthContext } from '../../Routes/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
 import useInstructor from '../Hooks/useInstructor';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const AllClassesCard = ({clas}) => {
 
     const {user}= useContext(AuthContext)
+    const navigate = useNavigate()
 
     const[axiosSecure]=useAxiosSecure()
 
     // const[isAdmin, adminLoading]=useAdmin()
     // const[isInstructor, isLoading]=useInstructor()
 
-    const book = {clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user?.displayName, email: user?.email, status:"selected", seat: clas.seat, enrolled: clas.totalEnrolled}
+   
     
     const disable = clas.seat == 0 ;
 
 
-    const handleSelectd = ()=>{
+    
+        const handleSelectd = ()=>{
 
-        axiosSecure.post("/selected", {
-            clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user?.displayName, email: user?.email, status:"selected", seat: clas.seat, enrolled: clas.totalEnrolled
-        })
-        .then(res =>{
-            if(res.data.insertedId){
+            if(user){
+                axiosSecure.post("/selected", {
+                    clasName: clas.className, instructor: clas.name, price:clas.price, image:clas.image, classId: clas._id, userName: user?.displayName, email: user?.email, status:"selected", seat: clas.seat, enrolled: clas.totalEnrolled
+                })
+                .then(res =>{
+                    if(res.data.insertedId){
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'class selected',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }
+                })
+            }
+
+            else{
                 Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'class selected',
-                    showConfirmButton: false,
-                    timer: 1500
+                    title: 'You can not select without login',
+                    text:"Do you want to",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      navigate("/login")
+                    }
                   })
             }
-        })
 
-      
-        // fetch("https://sports-camp-server-seven.vercel.app/selected",
-        // {
-        //     method:"POST",
-        //     headers:{
-        //         "content-type":"application/json"
-        //     },
-        //     body:JSON.stringify(book)
-        // }
-        // )
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data);
-        //     if(data.insertedId){
-        //         Swal.fire({
-        //             position: 'top-center',
-        //             icon: 'success',
-        //             title: 'class selected',
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //           })
-        //     }
-        // })
-    }
+          
+    
+          
+            
+        
+     }
+    
+       
 
-    if(isLoading ||adminLoading){
-        return <progress className="progress w-56"></progress>
-    }
+  
     return (
         
        <div>
