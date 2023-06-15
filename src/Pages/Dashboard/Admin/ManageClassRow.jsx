@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Feedback from '../../../Components/Feedback';
 
 const ManageClassRow = ({cla, index, refetch}) => {
 
+  console.log(cla);
 
-    const[id, setId]=useState()
+
+  
+   
     const[axiosSecure]=useAxiosSecure()
    
 
@@ -87,20 +92,7 @@ const ManageClassRow = ({cla, index, refetch}) => {
         //  })
     }
 
-    const handleFeedback = (e)=>{
 
-        e.preventDefault();
-      
-        const feedback = e.target.feedback.value;
-        
-    
-        axiosSecure.put(`/feedback/${id}`, {feedback: feedback})
-        .then(res =>{
-          console.log(res.data);
-        })
-       
-  
-      }
     return (
         <tr >
         <th>{index +1}</th>
@@ -112,9 +104,13 @@ const ManageClassRow = ({cla, index, refetch}) => {
         <td>{cla.price}</td>
         <td className='text-end'>{cla.status}</td>
         <td>
-          <div className='flex space-x-2'>
+          <div className='flex space-x-2 items-center'>
           <button disabled={cla.status === "approve" || cla.status === "deny"} onClick={handleAprove} className="btn btn-xs bg-orange-400">Approve</button>
           <button  onClick={handleDeny} disabled={cla.status === "approve" || cla.status === "deny"} className="btn btn-xs bg-orange-400">Deny</button>
+          {/* The button to open modal */}
+           <div>
+           <Feedback id={cla._id}/>
+           </div>
           </div>
         </td>
       </tr>

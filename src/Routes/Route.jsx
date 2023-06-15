@@ -45,7 +45,6 @@ const route = createBrowserRouter([
     {
           path:"/dashboard",
           element:<Dashboard/>,
-          errorElement:<ErrorPage/>,
           children:[
             {
                 path:"/dashboard/admin/manageClasses",

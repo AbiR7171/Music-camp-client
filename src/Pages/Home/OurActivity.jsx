@@ -14,7 +14,7 @@ const OurActivity = () => {
            <div>
              <h2 className="text-2xl text-center text-orange-500 font-serif">Our Bus Journey</h2>
              <div className='divider w-1/2 mx-auto'></div>
-           <div className='grid grid-cols-2'>
+           <div className='grid lg:grid-cols-2'>
              <motion.p drag> <Lottie animationData={Bus}   loop={true} /></motion.p>
              <div>
              <div className="card  mt-32 bg-neutral text-neutral-content font-serif">
@@ -28,7 +28,7 @@ const OurActivity = () => {
            <div>
              <h2 className="text-2xl text-center text-orange-500 font-serif">Our Fire Festival</h2>
              <div className='divider w-1/2 mx-auto'></div>
-           <div className='grid grid-cols-2 '>
+           <div className='grid lg:grid-cols-2 '>
              
              <div>
              <div className="card  mt-32 bg-neutral text-neutral-content font-serif">
@@ -44,7 +44,7 @@ The summer camp fire festival ignites the night with flickering flames and a con
            <div>
              <h2 className="text-2xl text-center text-orange-500 font-serif">Our Bus Journey</h2>
              <div className='divider w-1/2 mx-auto'></div>
-           <div className='grid grid-cols-2'>
+           <div className='grid lg:grid-cols-2'>
              <motion.p  drag> <Lottie animationData={song}   loop={true} /></motion.p>
              <div>
              <div className="card  mt-40 bg-neutral text-neutral-content font-serif">

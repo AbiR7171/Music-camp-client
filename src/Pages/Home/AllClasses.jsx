@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import useManageClasses from '../Hooks/useManageClasses';
 import AllClassesCard from './AllClassesCard';
 import UseSectionHeader from '../Hooks/useSectionHeader';
+import useAdmin from '../Hooks/useAdmin';
+import useInstructor from '../Hooks/useInstructor';
 
 const AllClasses = () => {
 
     const[approve,setApprove]=useState([])
-    console.log(approve);
+    console.log(approve)
+
+
 
    
     useEffect(()=>{

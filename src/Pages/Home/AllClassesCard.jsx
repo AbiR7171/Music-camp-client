@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Routes/AuthProvider';
-import useAdmin from '../Hooks/useAdmin';
-import useInstructor from '../Hooks/useInstructor';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -13,12 +11,11 @@ const AllClassesCard = ({clas}) => {
 
     const[axiosSecure]=useAxiosSecure()
 
-    // const[isAdmin, adminLoading]=useAdmin()
-    // const[isInstructor, isLoading]=useInstructor()
-
+  
    
     
     const disable = clas.seat == 0 ;
+
 
 
     

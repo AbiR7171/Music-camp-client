@@ -14,7 +14,7 @@ const Banner = () => {
         <div className='text-center'>
              <Carousel >
                 <div>
-                    <img src={banner2} />
+                    <img  src={banner2} />
                    <p className='-mt-72'>
                    <Lottie animationData={animation1}  loop={true} />
                    </p>
@@ -40,18 +40,6 @@ const Banner = () => {
                    <p className='absolute right-0 me-28 top-0 mt-24'>
                    <Lottie animationData={animation2} className='w-52' loop={true} />
                    </p>
-                </div>
-                <div>
-                    <img src="assets/4.jpeg" />
-                    <p className="legend">Legend 4</p>
-                </div>
-                <div>
-                    <img src="assets/5.jpeg" />
-                    <p className="legend">Legend 5</p>
-                </div>
-                <div>
-                    <img src="assets/6.jpeg" />
-                    <p className="legend">Legend 6</p>
                 </div>
             </Carousel>
         </div>

@@ -23,7 +23,7 @@ const PopularClasses = () => {
        <div className='mt-10 mb-10'>
         <UseSectionHeader title="Popular Classes" subTitle="Here is some of our Popular Class"/>
          <div className='grid lg:grid-cols-2 gap-3 mt-10'>
-            {popular.slice(0,6).map(pop => <div className="card card-side bg-orange-500 shadow-xl font-serif">
+            {popular.slice(0,6).map(pop => <div className="card lg:card-side bg-orange-500 shadow-xl font-serif">
   <figure><img src={pop.image} className='h-72 w-72 flex-1'/></figure>
   <div className="card-body flex-1">
     <h2 className="card-title">{pop.className}</h2>
